@@ -69,18 +69,91 @@ export default function App() {
 
 
 
-  
-
   return (  
     <>
       <div className="con">
 
         <div className="page">
-          <Excalidraw gridModeEnabled excalidrawAPI={(Api)=>setapi(Api)} onPointerUp={pointerUp} />
+          <Excalidraw
+              zenModeEnabled={false}
+              aiEnabled={false}
+              viewModeEnabled={false}
+              objectsSnapModeEnabled={false}
+              UIOptions={{
+                  tools: {
+                      viewMode: false,
+                      image: false,
+                      hand: false,
+                      selection: false,
+                      rectangle: false,
+                      diamond: false,
+                      ellipse: false,
+                      arrow: false,
+                      line: false,
+                      freedraw: false,
+                      text: false,
+                      eraser: false,
+                      laser: false,
+                  },
+                  canvasActions: {
+                      export: false,
+                      loadScene: false,
+                      saveToActiveFile: false,
+                      clearCanvas: false,
+                      toggleTheme: false,
+                  },
+              }}
+              renderToolbar={({ setActiveTool }) => (
+                  <div style={{ display: 'flex', gap: 8 }}>
+                      <button onClick={() => setActiveTool({ type: "selection" })}>
+                          MousePointer
+                      </button>
+                      <button onClick={() => setActiveTool({ type: "freedraw" })}>
+                          Pencil
+                      </button>
+                      <button onClick={() => setActiveTool({ type: "eraser" })}>
+                          Eraser
+                      </button>
+                  </div>
+              )}
+
+              renderSidebar={() => null}
+              renderFooter={() => null}
+              renderTopRightUI={() => null}
+              gridModeEnabled excalidrawAPI={(Api)=>setapi(Api)} onPointerUp={pointerUp} />
         </div>
         
         <div className="pageMeta"> 
-          <Excalidraw  excalidrawAPI={(Api)=>setapiMeta(Api)} onPointerUp={pointerUpMeta}/>
+          <Excalidraw
+              zenModeEnabled={false}
+              aiEnabled={false}
+              viewModeEnabled={false}
+              objectsSnapModeEnabled={false}
+              UIOptions={{
+                  tools: {
+                      viewMode: false,
+                      image: false,
+                      hand: false,
+                      selection: false,
+                      rectangle: false,
+                      diamond: false,
+                      ellipse: false,
+                      arrow: false,
+                      line: false,
+                      freedraw: false,
+                      text: false,
+                      eraser: false,
+                      laser: false,
+                  },
+                  canvasActions: {
+                      export: false,
+                      loadScene: false,
+                      saveToActiveFile: false,
+                      clearCanvas: false,
+                      toggleTheme: false,
+                  },
+              }}
+              excalidrawAPI={(Api)=>setapiMeta(Api)} onPointerUp={pointerUpMeta}/>
           <div className="overlay" />
         </div>
 
@@ -94,4 +167,4 @@ export default function App() {
       <FloatButton shape="square" className="fab2" icon={start?<PauseOutlined />:<CaretRightOutlined/>} tooltip="meta" description="meta" onClick={handleStart}></FloatButton>
     </>  
   );  
-}  
+}
